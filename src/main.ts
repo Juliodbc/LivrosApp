@@ -1,6 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router';
+import { addIcons } from 'ionicons';
+import { mailOutline, lockClosedOutline } from 'ionicons/icons';
+import './assets/css/theme.css';
 
 import { IonicVue } from '@ionic/vue';
 

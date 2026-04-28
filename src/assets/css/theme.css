@@ -1,0 +1,62 @@
+/* RESET + BASE */
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+/* FUNDO GLOBAL */
+.app-bg {
+  --background: radial-gradient(circle at 20% 20%, #1a1a1a, #000000 70%);
+}
+
+/* GLASS EFFECT */
+.glass-card {
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 107, 0, 0.2);
+  box-shadow: 0 0 40px rgba(255, 107, 0, 0.1);
+}
+
+/* INPUT MODERNO */
+.input-modern {
+  --background: rgba(255,255,255,0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 12px;
+  transition: 0.2s;
+}
+
+.input-modern:focus-within {
+  border: 1px solid #ff6b00;
+  box-shadow: 0 0 10px rgba(255,107,0,0.4);
+}
+
+/* BOTÃO PREMIUM */
+.btn-primary {
+  --background: linear-gradient(135deg, #ff6b00, #ff8c42);
+  --border-radius: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 5px 20px rgba(255,107,0,0.4);
+}
+
+/* TEXTO */
+.text-muted {
+  color: #9ca3af;
+}
+
+/* ANIMAÇÃO */
+.fade-in {
+  animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

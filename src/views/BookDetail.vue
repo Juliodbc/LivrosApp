@@ -3,7 +3,7 @@
     <ion-header>
       <ion-toolbar class="toolbar">
         <ion-buttons slot="start">
-          <ion-button @click="goBack">Voltar</ion-button>
+          <ion-button @click="back">Voltar</ion-button>
         </ion-buttons>
         <ion-title>Detalhes</ion-title>
       </ion-toolbar>
@@ -11,24 +11,42 @@
 
     <ion-content class="app-bg">
 
-      <div v-if="book" class="container">
+      <div v-if="book" class="container fade-in">
 
-        <img :src="book.image" class="img" />
-
-        <h1>{{ book.title }}</h1>
-        <h2>{{ book.author }}</h2>
-
-        <p>{{ book.description }}</p>
-
-        <div class="info">
-          <p><strong>Ano:</strong> {{ book.year }}</p>
-          <p><strong>Páginas:</strong> {{ book.pages }}</p>
-          <p><strong>Gênero:</strong> {{ book.genre }}</p>
+        <!-- IMAGEM GRANDE -->
+        <div class="image-wrapper">
+          <img :src="book.image" class="img" />
         </div>
 
-        <ion-button expand="block" class="btn" @click="toggleFavorite">
-          {{ book.isFavorite ? "Remover dos Favoritos" : "Adicionar aos Favoritos" }}
-        </ion-button>
+        <!-- CONTEÚDO -->
+        <div class="card">
+
+          <h1 class="title">{{ book.title }}</h1>
+          <p class="author">{{ book.author }}</p>
+
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="label">Ano</span>
+              <span class="value">{{ book.year }}</span>
+            </div>
+
+            <div class="info-item">
+              <span class="label">Páginas</span>
+              <span class="value">{{ book.pages }}</span>
+            </div>
+
+            <div class="info-item">
+              <span class="label">Gênero</span>
+              <span class="value">{{ book.genre }}</span>
+            </div>
+          </div>
+
+          <div class="description">
+            <h3>Descrição</h3>
+            <p>{{ book.description }}</p>
+          </div>
+
+        </div>
 
       </div>
 
@@ -46,9 +64,10 @@ import {
   IonButtons,
   IonButton
 } from '@ionic/vue';
+
 import { useRoute, useRouter } from "vue-router";
-import { computed } from "vue";
 import { books } from "@/data/books";
+import { computed } from "vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -57,56 +76,104 @@ const book = computed(() =>
   books.find(b => b.id === Number(route.params.id))
 );
 
-const toggleFavorite = () => {
-  if (book.value) {
-    book.value.isFavorite = !book.value.isFavorite;
-  }
-};
-
-const goBack = () => {
+const back = () => {
   router.back();
 };
 </script>
 
 <style scoped>
+
+/* HEADER */
 .toolbar {
   --background: #0f0f0f;
   --color: white;
 }
 
-.app-bg {
-  --background:
-    radial-gradient(circle at 20% 20%, rgba(255,107,0,0.15), transparent 40%),
-    linear-gradient(135deg, #0a0a0a, #111827, #000);
+/* CONTAINER */
+.container {
+  padding-bottom: 20px;
 }
 
-.container {
-  padding: 20px;
+/* IMAGEM GRANDE */
+.image-wrapper {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
 }
 
 .img {
   width: 100%;
-  height: 250px;
+  height: 100%;
   object-fit: cover;
-  border-radius: 16px;
+}
+
+/* CARD */
+.card {
+  margin: -40px 15px 0;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(20,20,20,0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,107,0,0.2);
+}
+
+/* TITULO */
+.title {
+  color: #ff6b00;
+  font-size: 1.6rem;
+}
+
+/* AUTOR */
+.author {
+  color: #9ca3af;
+  margin-bottom: 15px;
+}
+
+/* GRID INFO */
+.info-grid {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 20px;
 }
 
-h1 {
-  color: #ff6b00;
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-h2 {
+.label {
+  font-size: 0.7rem;
   color: #9ca3af;
 }
 
-.info {
-  margin-top: 10px;
-  color: #d1d5db;
+.value {
+  font-size: 1rem;
+  color: white;
+  font-weight: bold;
 }
 
-.btn {
-  margin-top: 20px;
-  --background: linear-gradient(135deg, #ff6b00, #ff8c42);
+/* DESCRIÇÃO */
+.description h3 {
+  color: #ff6b00;
+  margin-bottom: 5px;
 }
+
+.description p {
+  color: #d1d5db;
+  line-height: 1.5;
+}
+
+/* RESPONSIVO */
+@media (min-width: 768px) {
+  .image-wrapper {
+    height: 400px;
+  }
+
+  .card {
+    max-width: 600px;
+    margin: -60px auto 0;
+  }
+}
+
 </style>

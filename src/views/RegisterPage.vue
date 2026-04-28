@@ -55,6 +55,13 @@
 </template>
 
 <script setup lang="ts">
+import {
+  IonPage,
+  IonContent,
+  IonItem,
+  IonInput,
+  IonButton
+} from '@ionic/vue';
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { personOutline, mailOutline, lockClosedOutline } from "ionicons/icons";

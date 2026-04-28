@@ -41,7 +41,8 @@
             <ion-button
               class="link-secondary"
               fill="clear"
-              router-link="/register"
+              :routerLink="'/register'"
+            router-direction="forward"
             >
               Criar nova conta
             </ion-button>
@@ -55,6 +56,14 @@
 </template>
 
 <script setup lang="ts">
+import {
+  IonPage,
+  IonContent,
+  IonItem,
+  IonInput,
+  IonButton,
+  IonIcon
+} from '@ionic/vue';
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { mailOutline, lockClosedOutline } from "ionicons/icons";

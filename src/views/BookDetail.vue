@@ -37,6 +37,15 @@
 </template>
 
 <script setup lang="ts">
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonButtons,
+  IonButton
+} from '@ionic/vue';
 import { useRoute, useRouter } from "vue-router";
 import { computed } from "vue";
 import { books } from "@/data/books";
